@@ -1,58 +1,136 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Point of Sale (POS) System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A complete, lightweight, and modern **Point of Sale (POS) System** designed for small retail shops. Built from the ground up using **Laravel (PHP)**, **MySQL**, **Blade**, **Bootstrap 5**, and interactive **Vanilla JavaScript**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🌟 Key Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. 🔐 Role-Based Authentication
+- Secure Login, Registration, and Session management.
+- Multi-role support: **Admin** and **Cashier** roles.
+- Role-based middleware to guard administrative tools (managing categories, editing products, processing refunds, viewing analytics).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 2. 📊 Performance Dashboard
+- **KPI Metrics**: Real-time counters showing Total Sales Revenue, Today's Sales Revenue, Total Products, and Low-Stock Alert Count.
+- **Order Log**: Displays the latest 5 completed transactions with cashier tracking.
+- **Inventory Warnings**: Lists items that are low in stock (quantities <= warning threshold) for proactive restocking.
 
-## Learning Laravel
+### 3. 🛍️ Interactive POS Terminal Screen
+- **Quick Catalog**: Live search filtering by typing product name/SKU and clicking category pills.
+- **Dynamic Shopping Cart**: Add/remove products and adjust quantities instantly using client-side JavaScript.
+- **Stock Guardrail**: Real-time validation preventing checkout or additions exceeding available stock levels.
+- **Checkout Calculations**: Calculates Subtotals, customizable Tax and Discount percentages, cash received, and change due.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 4. 📦 Product & Category CRUD
+- **Category Manager**: Single-page CRUD using interactive Bootstrap 5 modals to create/update categories.
+- **Product Catalog Editor**: Form with file inputs for product images, retail pricing, cost tracking, stock values, and warning thresholds. Includes automatic unique SKU/barcode generation if left blank.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 5. 🧾 Transactions & Printable Receipts
+- Safe transactional checkouts using MySQL database transactions (`DB::transaction`).
+- Generates unique invoice numbers.
+- **Thermal Invoice Receipts**: Printable receipt view styled for standard 80mm thermal roll printers that automatically triggers browser print dialogs on load.
+- Detailed invoice explorer logs featuring comprehensive order breakdowns.
+- **Reversal Refund Actions**: Authorized Admins can reverse sales, automatically returning items back to inventory stock.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 6. 📈 Reports & Spreadsheets Exports
+- Financial statistics showing performance Today, This Week, and This Month.
+- **Bestsellers Ranking**: Details top 10 items sold by popularity and revenue generation.
+- **Stock Valuation Summary**: Calculates Total Stock cost, Total Stock Retail value, and Expected Profit margins.
+- **Native CSV Exports**: High-speed, lightweight downloads for Sales Logs, Top-Selling items, and Current Stock metrics.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## 🛠️ Technologies Used
+- **Backend**: PHP 8.x, Laravel (MVC Architecture, Eloquent ORM, DB Transactions, Migrations)
+- **Frontend**: HTML5, Blade Templates, Bootstrap 5, Bootstrap Icons, Vanilla JavaScript
+- **Database**: MySQL (relational constraints, cascading deletions, composite indexes)
+- **Environment**: XAMPP (Local Apache & MySQL Server)
 
-```bash
-composer require laravel/boost --dev
+---
 
-php artisan boost:install
+## 🚀 Installation & Local Setup
+
+### Prerequisites
+Make sure you have **PHP 8.x**, **Composer**, and **MySQL/XAMPP** active on your system.
+
+### Step-by-Step Guide
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/reezmahanan/POS-System.git
+   cd POS-System
+   ```
+
+2. **Install Composer Dependencies**
+   ```bash
+   composer install
+   ```
+
+3. **Configure Environment Variables**
+   - Copy the example `.env` file:
+     ```bash
+     copy .env.example .env
+     ```
+   - Open `.env` and configure your database settings (database name, port, username, password). E.g.
+     ```env
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3307  # Match your MySQL/XAMPP port (typically 3306 or 3307)
+     DB_DATABASE=pos_system
+     DB_USERNAME=root
+     DB_PASSWORD=
+     ```
+
+4. **Prepare the Database**
+   - Create a database named `pos_system` in your local MySQL Server (via phpMyAdmin or terminal).
+   - Generate your unique application key:
+     ```bash
+     php artisan key:generate
+     ```
+
+5. **Run Migrations & Seeders**
+   Rebuild tables and populate them with default roles, categories, and test products in one command:
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
+
+6. **Create Public Storage Symbolic Link**
+   Enable browser access to uploaded product images:
+   ```bash
+   php artisan storage:link
+   ```
+
+7. **Start the Local Server**
+   ```bash
+   php artisan serve
+   ```
+   Open your browser and navigate to `http://127.0.0.1:8000`.
+
+---
+
+## 🔑 Demo Access Credentials
+
+The database seeder generates two default user accounts for testing:
+
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Admin Manager** | `admin@pos.com` | `admin123` |
+| **Cashier clerk** | `cashier@pos.com` | `cashier123` |
+
+---
+
+## 📂 Database Relationships Structure
+
+```mermaid
+erDiagram
+    users ||--o{ sales : "processes"
+    categories ||--o{ products : "contains"
+    products ||--o{ sale_items : "sold-in"
+    sales ||--|{ sale_items : "details"
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- `categories` has a one-to-many relationship with `products`.
+- `users` (cashiers) has a one-to-many relationship with `sales`.
+- `sales` has a one-to-many relationship with `sale_items`.
+- `products` has a one-to-many relationship with `sale_items`.
