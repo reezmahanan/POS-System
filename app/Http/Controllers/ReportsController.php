@@ -76,7 +76,7 @@ class ReportsController extends Controller
 
         $callback = function() use($sales) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, ['Invoice No', 'Cashier Name', 'Subtotal ($)', 'Tax ($)', 'Discount ($)', 'Grand Total ($)', 'Payment Status', 'Transaction Date']);
+            fputcsv($file, ['Invoice No', 'Cashier Name', 'Subtotal (Rs.)', 'Tax (Rs.)', 'Discount (Rs.)', 'Grand Total (Rs.)', 'Payment Status', 'Transaction Date']);
 
             foreach ($sales as $sale) {
                 fputcsv($file, [
@@ -120,7 +120,7 @@ class ReportsController extends Controller
 
         $callback = function() use($topSellingProducts) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, ['Product Name', 'SKU', 'Category', 'Quantity Sold', 'Revenue Generated ($)']);
+            fputcsv($file, ['Product Name', 'SKU', 'Category', 'Quantity Sold', 'Revenue Generated (Rs.)']);
 
             foreach ($topSellingProducts as $item) {
                 fputcsv($file, [
@@ -155,7 +155,7 @@ class ReportsController extends Controller
 
         $callback = function() use($products) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, ['Product Name', 'SKU', 'Category', 'Unit Cost ($)', 'Unit Retail Price ($)', 'Stock Quantity', 'Total Cost Value ($)', 'Total Retail Value ($)', 'Estimated Profit ($)']);
+            fputcsv($file, ['Product Name', 'SKU', 'Category', 'Unit Cost (Rs.)', 'Unit Retail Price (Rs.)', 'Stock Quantity', 'Total Cost Value (Rs.)', 'Total Retail Value (Rs.)', 'Estimated Profit (Rs.)']);
 
             foreach ($products as $product) {
                 $totalCost = $product->purchase_price * $product->stock_quantity;

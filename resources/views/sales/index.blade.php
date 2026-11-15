@@ -60,10 +60,10 @@
                                 <tr>
                                     <td class="ps-3 fw-semibold text-primary">#{{ $sale->invoice_no }}</td>
                                     <td>{{ $sale->user->name }}</td>
-                                    <td>${{ number_format($sale->subtotal, 2) }}</td>
-                                    <td class="text-danger">-${{ number_format($sale->discount, 2) }}</td>
-                                    <td>${{ number_format($sale->tax, 2) }}</td>
-                                    <td class="fw-bold text-success">${{ number_format($sale->grand_total, 2) }}</td>
+                                    <td>Rs. {{ number_format($sale->subtotal, 2) }}</td>
+                                    <td class="text-danger">-Rs. {{ number_format($sale->discount, 2) }}</td>
+                                    <td>Rs. {{ number_format($sale->tax, 2) }}</td>
+                                    <td class="fw-bold text-success">Rs. {{ number_format($sale->grand_total, 2) }}</td>
                                     <td>
                                         @if($sale->status === 'completed')
                                             <span class="badge bg-success-subtle text-success">Completed</span>

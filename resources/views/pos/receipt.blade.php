@@ -80,7 +80,7 @@
                         <small>{{ $item->quantity }}</small>
                     </td>
                     <td class="text-end">
-                        <small>${{ number_format($item->total, 2) }}</small>
+                        <small>Rs. {{ number_format($item->total, 2) }}</small>
                     </td>
                 </tr>
             @endforeach
@@ -92,26 +92,26 @@
     <!-- Calculations Summary -->
     <div class="row g-1">
         <div class="col-7"><small>Subtotal</small></div>
-        <div class="col-5 text-end"><small>${{ number_format($sale->subtotal, 2) }}</small></div>
+        <div class="col-5 text-end"><small>Rs. {{ number_format($sale->subtotal, 2) }}</small></div>
 
         @if($sale->discount > 0)
             <div class="col-7"><small>Discount</small></div>
-            <div class="col-5 text-end text-danger"><small>-${{ number_format($sale->discount, 2) }}</small></div>
+            <div class="col-5 text-end text-danger"><small>-Rs. {{ number_format($sale->discount, 2) }}</small></div>
         @endif
 
         @if($sale->tax > 0)
             <div class="col-7"><small>Tax</small></div>
-            <div class="col-5 text-end"><small>${{ number_format($sale->tax, 2) }}</small></div>
+            <div class="col-5 text-end"><small>Rs. {{ number_format($sale->tax, 2) }}</small></div>
         @endif
 
         <div class="col-7 h6 fw-bold mb-0 mt-2">Grand Total</div>
-        <div class="col-5 text-end h6 fw-bold mb-0 mt-2">${{ number_format($sale->grand_total, 2) }}</div>
+        <div class="col-5 text-end h6 fw-bold mb-0 mt-2">Rs. {{ number_format($sale->grand_total, 2) }}</div>
 
         <div class="col-7 mt-2"><small>Cash Received</small></div>
-        <div class="col-5 text-end mt-2"><small>${{ number_format($sale->cash_received, 2) }}</small></div>
+        <div class="col-5 text-end mt-2"><small>Rs. {{ number_format($sale->cash_received, 2) }}</small></div>
 
         <div class="col-7"><small>Change Returned</small></div>
-        <div class="col-5 text-end text-success"><small>${{ number_format($sale->change_returned, 2) }}</small></div>
+        <div class="col-5 text-end text-success"><small>Rs. {{ number_format($sale->change_returned, 2) }}</small></div>
     </div>
 
     <div class="dashed-line"></div>

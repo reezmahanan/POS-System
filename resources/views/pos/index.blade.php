@@ -76,7 +76,7 @@
                                         <small class="text-muted d-block mb-1">SKU: {{ $product->sku }}</small>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-2">
-                                        <span class="fw-bold text-success">${{ number_format($product->selling_price, 2) }}</span>
+                                        <span class="fw-bold text-success">Rs. {{ number_format($product->selling_price, 2) }}</span>
                                         <span class="badge bg-secondary-subtle text-dark">Qty: {{ $product->stock_quantity }}</span>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@
                     <div class="p-3 border-top bg-light">
                         <div class="row g-2 mb-2">
                             <div class="col-6 text-muted">Subtotal</div>
-                            <div class="col-6 text-end fw-semibold" id="lbl-subtotal">$0.00</div>
+                            <div class="col-6 text-end fw-semibold" id="lbl-subtotal">Rs. 0.00</div>
                             <input type="hidden" name="subtotal" id="input-subtotal" value="0.00">
                         </div>
 
@@ -158,7 +158,7 @@
 
                         <div class="row g-2 mb-3">
                             <div class="col-6 h5 fw-bold text-dark">Grand Total</div>
-                            <div class="col-6 h5 fw-bold text-end text-primary" id="lbl-grand-total">$0.00</div>
+                            <div class="col-6 h5 fw-bold text-end text-primary" id="lbl-grand-total">Rs. 0.00</div>
                             <input type="hidden" name="grand_total" id="input-grand-total" value="0.00">
                         </div>
 
@@ -174,7 +174,7 @@
 
                         <div class="row g-2 mb-3">
                             <div class="col-6 h6 fw-semibold text-secondary">Change Due</div>
-                            <div class="col-6 h6 fw-bold text-end text-danger" id="lbl-change-due">$0.00</div>
+                            <div class="col-6 h6 fw-bold text-end text-danger" id="lbl-change-due">Rs. 0.00</div>
                             <input type="hidden" name="change_returned" id="input-change-due" value="0.00">
                         </div>
 
@@ -243,7 +243,7 @@
                 <tr data-id="${item.id}">
                     <td class="ps-3">
                         <div class="fw-semibold text-truncate" style="max-width: 150px;">${item.name}</div>
-                        <small class="text-muted">$${item.price.toFixed(2)}</small>
+                        <small class="text-muted">Rs. ${item.price.toFixed(2)}</small>
                     </td>
                     <td>
                         <div class="input-group input-group-sm" style="width: 100px;">
@@ -252,7 +252,7 @@
                             <button type="button" class="btn btn-outline-secondary" onclick="adjustQty(${item.id}, 1)">+</button>
                         </div>
                     </td>
-                    <td class="fw-semibold">$${(item.price * item.qty).toFixed(2)}</td>
+                    <td class="fw-semibold">Rs. ${(item.price * item.qty).toFixed(2)}</td>
                     <td class="text-end pe-3">
                         <button type="button" class="btn btn-sm btn-link text-danger p-0" onclick="removeFromCart(${item.id})">
                             <i class="bi bi-trash fs-5"></i>
@@ -320,8 +320,8 @@
         let grandTotal = discountedSubtotal + taxAmount;
 
         // Update Labels
-        document.getElementById('lbl-subtotal').innerText = `$${subtotal.toFixed(2)}`;
-        document.getElementById('lbl-grand-total').innerText = `$${grandTotal.toFixed(2)}`;
+        document.getElementById('lbl-subtotal').innerText = `Rs. ${subtotal.toFixed(2)}`;
+        document.getElementById('lbl-grand-total').innerText = `Rs. ${grandTotal.toFixed(2)}`;
 
         // Update Hidden Inputs
         document.getElementById('input-subtotal').value = subtotal.toFixed(2);
@@ -333,7 +333,7 @@
         let changeDue = cashReceived - grandTotal;
 
         if (changeDue < 0) {
-            document.getElementById('lbl-change-due').innerText = `$0.00`;
+            document.getElementById('lbl-change-due').innerText = `Rs. 0.00`;
             document.getElementById('lbl-change-due').className = 'col-6 h6 fw-bold text-end text-danger';
             document.getElementById('input-change-due').value = '0.00';
             // Disable complete button if cash received is less than grand total
@@ -341,7 +341,7 @@
                 document.getElementById('btn-checkout').disabled = true;
             }
         } else {
-            document.getElementById('lbl-change-due').innerText = `$${changeDue.toFixed(2)}`;
+            document.getElementById('lbl-change-due').innerText = `Rs. ${changeDue.toFixed(2)}`;
             document.getElementById('lbl-change-due').className = 'col-6 h6 fw-bold text-end text-success';
             document.getElementById('input-change-due').value = changeDue.toFixed(2);
             if (cart.length > 0) {

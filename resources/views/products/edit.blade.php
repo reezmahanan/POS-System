@@ -74,7 +74,7 @@
                         <div class="col-md-4 mb-3">
                             <label for="purchase_price" class="form-label text-secondary fw-semibold">Purchase Price (Cost) <span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <span class="input-group-text">$</span>
+                                <span class="input-group-text">Rs.</span>
                                 <input type="number" step="0.01" min="0" class="form-control @error('purchase_price') is-invalid @enderror" id="purchase_price" name="purchase_price" value="{{ old('purchase_price', $product->purchase_price) }}" required>
                                 @error('purchase_price')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -86,7 +86,7 @@
                         <div class="col-md-4 mb-3">
                             <label for="selling_price" class="form-label text-secondary fw-semibold">Selling Price (Retail) <span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <span class="input-group-text">$</span>
+                                <span class="input-group-text">Rs.</span>
                                 <input type="number" step="0.01" min="0" class="form-control @error('selling_price') is-invalid @enderror" id="selling_price" name="selling_price" value="{{ old('selling_price', $product->selling_price) }}" required>
                                 @error('selling_price')
                                     <div class="invalid-feedback">{{ $message }}</div>

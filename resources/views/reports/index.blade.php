@@ -14,7 +14,7 @@
                 </div>
                 <div>
                     <span class="text-muted d-block"><small>Today's Sales Revenue</small></span>
-                    <h3 class="mb-0 fw-bold">${{ number_format($dailySales, 2) }}</h3>
+                    <h3 class="mb-0 fw-bold">Rs. {{ number_format($dailySales, 2) }}</h3>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <span class="text-muted d-block"><small>Weekly Sales Revenue (This Week)</small></span>
-                    <h3 class="mb-0 fw-bold">${{ number_format($weeklySales, 2) }}</h3>
+                    <h3 class="mb-0 fw-bold">Rs. {{ number_format($weeklySales, 2) }}</h3>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 </div>
                 <div>
                     <span class="text-muted d-block"><small>Monthly Sales Revenue (This Month)</small></span>
-                    <h3 class="mb-0 fw-bold">${{ number_format($monthlySales, 2) }}</h3>
+                    <h3 class="mb-0 fw-bold">Rs. {{ number_format($monthlySales, 2) }}</h3>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
                                     <td><code>{{ $item->product->sku ?? 'N/A' }}</code></td>
                                     <td>{{ $item->product->category->name ?? 'N/A' }}</td>
                                     <td class="text-center fw-bold">{{ $item->total_qty }}</td>
-                                    <td class="text-end pe-3 text-success fw-bold">${{ number_format($item->total_revenue, 2) }}</td>
+                                    <td class="text-end pe-3 text-success fw-bold">Rs. {{ number_format($item->total_revenue, 2) }}</td>
                                 </tr>
                             @empty
                                 <tr>
@@ -120,19 +120,19 @@
                     <div class="col-md-4">
                         <div class="border rounded p-3 bg-light text-center">
                             <span class="text-muted d-block"><small>Total Stock Cost Value</small></span>
-                            <h4 class="mb-0 fw-bold text-dark">${{ number_format($totalCostValuation, 2) }}</h4>
+                            <h4 class="mb-0 fw-bold text-dark">Rs. {{ number_format($totalCostValuation, 2) }}</h4>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="border rounded p-3 bg-light text-center">
                             <span class="text-muted d-block"><small>Total Stock Retail Value</small></span>
-                            <h4 class="mb-0 fw-bold text-success">${{ number_format($totalRetailValuation, 2) }}</h4>
+                            <h4 class="mb-0 fw-bold text-success">Rs. {{ number_format($totalRetailValuation, 2) }}</h4>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="border rounded p-3 bg-light text-center">
                             <span class="text-muted d-block"><small>Estimated Profit Margin</small></span>
-                            <h4 class="mb-0 fw-bold text-primary">${{ number_format($expectedProfitValuation, 2) }}</h4>
+                            <h4 class="mb-0 fw-bold text-primary">Rs. {{ number_format($expectedProfitValuation, 2) }}</h4>
                         </div>
                     </div>
                 </div>
@@ -169,15 +169,15 @@
                                         <small class="text-muted">SKU: {{ $product->sku }}</small>
                                     </td>
                                     <td>{{ $product->category->name }}</td>
-                                    <td class="text-end">${{ number_format($product->purchase_price, 2) }}</td>
-                                    <td class="text-end text-success">${{ number_format($product->selling_price, 2) }}</td>
+                                    <td class="text-end">Rs. {{ number_format($product->purchase_price, 2) }}</td>
+                                    <td class="text-end text-success">Rs. {{ number_format($product->selling_price, 2) }}</td>
                                     <td class="text-center">
                                         <span class="badge {{ $product->stock_quantity <= $product->low_stock_alert ? 'bg-danger' : 'bg-secondary' }}">
                                             {{ $product->stock_quantity }}
                                         </span>
                                     </td>
-                                    <td class="text-end">${{ number_format($costSum, 2) }}</td>
-                                    <td class="text-end pe-3 fw-bold text-primary">${{ number_format($retailSum, 2) }}</td>
+                                    <td class="text-end">Rs. {{ number_format($costSum, 2) }}</td>
+                                    <td class="text-end pe-3 fw-bold text-primary">Rs. {{ number_format($retailSum, 2) }}</td>
                                 </tr>
                             @empty
                                 <tr>

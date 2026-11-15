@@ -12,7 +12,7 @@
             <div class="card-body d-flex align-items-center justify-content-between">
                 <div>
                     <h6 class="text-white-50 text-uppercase mb-1">Total Sales</h6>
-                    <h3 class="mb-0 fw-bold">${{ number_format($totalSales, 2) }}</h3>
+                    <h3 class="mb-0 fw-bold">Rs. {{ number_format($totalSales, 2) }}</h3>
                 </div>
                 <div class="fs-1 text-white-50">
                     <i class="bi bi-wallet2"></i>
@@ -27,7 +27,7 @@
             <div class="card-body d-flex align-items-center justify-content-between">
                 <div>
                     <h6 class="text-white-50 text-uppercase mb-1">Today's Sales</h6>
-                    <h3 class="mb-0 fw-bold">${{ number_format($todaySales, 2) }}</h3>
+                    <h3 class="mb-0 fw-bold">Rs. {{ number_format($todaySales, 2) }}</h3>
                 </div>
                 <div class="fs-1 text-white-50">
                     <i class="bi bi-graph-up"></i>
@@ -92,7 +92,7 @@
                                 <tr>
                                     <td class="ps-3 fw-semibold text-primary">#{{ $sale->invoice_no }}</td>
                                     <td>{{ $sale->user->name }}</td>
-                                    <td class="fw-bold">${{ number_format($sale->grand_total, 2) }}</td>
+                                    <td class="fw-bold">Rs. {{ number_format($sale->grand_total, 2) }}</td>
                                     <td>
                                         @if($sale->status === 'completed')
                                             <span class="badge bg-success-subtle text-success">Completed</span>

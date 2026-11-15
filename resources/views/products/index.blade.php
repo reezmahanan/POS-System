@@ -77,8 +77,8 @@
                                     <td>
                                         <span class="badge bg-secondary-subtle text-dark">{{ $product->category->name }}</span>
                                     </td>
-                                    <td class="fw-semibold">${{ number_format($product->purchase_price, 2) }}</td>
-                                    <td class="fw-bold text-success">${{ number_format($product->selling_price, 2) }}</td>
+                                    <td class="fw-semibold">Rs. {{ number_format($product->purchase_price, 2) }}</td>
+                                    <td class="fw-bold text-success">Rs. {{ number_format($product->selling_price, 2) }}</td>
                                     <td>
                                         @if($isLowStock)
                                             <span class="badge bg-danger text-white" data-bs-toggle="tooltip" title="Low Stock Warning!">
